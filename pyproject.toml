@@ -42,5 +42,6 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "packages/quoteproof/tests"]
+pythonpath = ["tests"]
 addopts = "-q --disable-socket --import-mode=importlib"
 markers = ["live: needs Ollama and SearXNG; runs only with DR_LIVE=1"]
