@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+dist/
+runs/
+*.sqlite
+.env
+.env.*
+!.env.example

@@ -11,3 +11,6 @@ Deviations: `Ruling: <what> - <why> - <cost>`
 
 Task 0: complete (planner: spec, 10 ADRs, plan with 24 tasks, fixtures, .gitattributes; prototypes: Send fan-out peak 3 of 8 / 16 claims; SqliteSaver crash-resume re-ran only the failed branch (4 -> 5 calls); trafilatura on 5 pages ok; Ollama format-schema extract 4/4 quotes found in 138.8 s; bench idea 198/200 genuine found; pytest-socket allow_hosts + local server ok; minimal PDF extract ok; uv workspace builds both wheels)
 Ruling: host CLI invoked as `uv run python -m deep_research` - Windows Application Control blocks .venv/Scripts/dr.exe (os error 4551) - none for users; docs still show `dr`
+Ruling: ruff `extend-exclude` covers *.md/docs - ruff 0.16 formats Markdown code fences and would fail G1 on the plan file - none
+Ruling: board write nested a stray `data.data.stage` field in projects/deep-research (first update call used wrong shape); stage itself is correct, cleanup was denied by the permission classifier - leave for the lead to clear
+Task 1: complete (tests: uv run pytest -> 3 passed; ruff ok; red seen: n/a scaffold)
