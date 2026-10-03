@@ -188,6 +188,10 @@ def main(argv: list[str] | None = None, *, deps_factory: Callable[[], dict] | No
             return _cmd_show(args, settings)
         if args.command == "verify":
             return _cmd_verify(args, settings)
+        if args.command == "bench":
+            from deep_research.bench import bench_main
+
+            return bench_main(args.pages, args.seed, args.per_page, args.out, args.check)
         print(f"dr {args.command}: not implemented", file=sys.stderr)
         return 2
     except FileNotFoundError as exc:

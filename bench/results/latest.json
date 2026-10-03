@@ -1,0 +1,89 @@
+{
+  "bench": "quoteproof-v1",
+  "corpus": [
+    {
+      "file": "atomiccommit.html",
+      "sampled": 40,
+      "sentences": 733,
+      "sha256": "5a5be7b660217c9408c8a81eaf2faa2d08832ed3790f895a0a713916ad856ea1"
+    },
+    {
+      "file": "isolation.html",
+      "sampled": 40,
+      "sentences": 139,
+      "sha256": "23395653f04984e4310b287ed548202d874e06ecd2cba17f32b2714e5b7ebef7"
+    },
+    {
+      "file": "lockingv3.html",
+      "sampled": 40,
+      "sentences": 281,
+      "sha256": "fa67031159fc0658b6e3fcfa4e446c140838c75cb813ff9fafd47fdae927936f"
+    },
+    {
+      "file": "wal.html",
+      "sampled": 40,
+      "sentences": 347,
+      "sha256": "f3467b530b883d4a00574fe1a898b3d121ed72764ae28cf66941080ac0badb9e"
+    },
+    {
+      "file": "whentouse.html",
+      "sampled": 40,
+      "sentences": 160,
+      "sha256": "d0850096c26e9c888acaf2d6e2ac029e86f66f51a87461b77b94f1639d309b79"
+    }
+  ],
+  "genuine": {
+    "accepted": 200,
+    "rate": 1.0,
+    "rejected_by_reason": {},
+    "total": 200
+  },
+  "mutated": {
+    "by_kind": {
+      "change_number": {
+        "rate": 1.0,
+        "rejected": 12,
+        "skipped": 188,
+        "total": 12
+      },
+      "delete_word": {
+        "rate": 1.0,
+        "rejected": 200,
+        "skipped": 0,
+        "total": 200
+      },
+      "insert_not": {
+        "rate": 1.0,
+        "rejected": 200,
+        "skipped": 0,
+        "total": 200
+      },
+      "swap_word": {
+        "rate": 1.0,
+        "rejected": 200,
+        "skipped": 0,
+        "total": 200
+      },
+      "transpose": {
+        "rate": 1.0,
+        "rejected": 200,
+        "skipped": 0,
+        "total": 200
+      }
+    },
+    "rate": 1.0,
+    "rejected": 812,
+    "rejected_by_reason": {
+      "QUOTE_NOT_FOUND": 811,
+      "QUOTE_TOO_SHORT": 1
+    },
+    "total": 812
+  },
+  "norm": "NORM_V1",
+  "per_page": 40,
+  "seed": 42,
+  "versions": {
+    "quoteproof": "0.1.0",
+    "trafilatura": "2.3.0"
+  }
+}
