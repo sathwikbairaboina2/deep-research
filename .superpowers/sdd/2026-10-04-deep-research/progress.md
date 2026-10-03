@@ -21,3 +21,4 @@ Task 4: complete (uv run pytest packages -> 27 passed; wheel builds and imports 
 Task 5: complete (uv run pytest tests/test_models.py -> passed)
 Task 6: complete (uv run pytest tests/test_budget.py -> 5 passed; red seen: with the search cap check removed test_budget_hard_caps failed (160 == 5))
 Task 7: complete (uv run pytest tests/test_store.py -> 4 passed)
+Task 8: complete (uv run pytest tests/test_urls.py tests/test_search.py -> 14 passed)
