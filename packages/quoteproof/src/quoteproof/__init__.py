@@ -1,3 +1,13 @@
+from .lint import (
+    MALFORMED_MARKER,
+    NO_MARKERS,
+    REJECTED_MARKER,
+    UNKNOWN_MARKER,
+    LintError,
+    LintResult,
+    lint_report,
+    render_footnotes,
+)
 from .normalize import NORM_VERSION, normalize
 from .verify import (
     FOUND,
@@ -25,14 +35,22 @@ __all__ = [
     "QUOTE_NOT_FOUND",
     "QUOTE_TOO_LONG",
     "QUOTE_TOO_SHORT",
+    "MALFORMED_MARKER",
+    "NO_MARKERS",
+    "REJECTED_MARKER",
+    "UNKNOWN_MARKER",
     "UNKNOWN_SOURCE",
+    "LintError",
+    "LintResult",
     "Citation",
     "CitationResult",
     "Claim",
     "Corpus",
     "Verdict",
     "check_quote",
+    "lint_report",
     "normalize",
+    "render_footnotes",
     "verify_claim",
     "verify_claims",
 ]
