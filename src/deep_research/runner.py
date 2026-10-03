@@ -11,7 +11,7 @@ from pathlib import Path
 
 import httpx
 from langgraph.checkpoint.sqlite import SqliteSaver
-from quoteproof import NORM_VERSION
+from quoteproof import NORM_VERSION, Citation, Claim, Corpus, verify_claims
 
 from deep_research.budget import Budget
 from deep_research.config import Settings
@@ -220,3 +220,30 @@ def resume_run(
     return _execute(
         run_id, meta["question"], limits, settings, resume=True, llm=llm, search=search, fetch=fetch
     )
+
+
+def reverify_run(run: dict, store: PageStore) -> dict:
+    """Re-verify every claim of a run against the stored texts and compare with run.json.
+
+    `unverifiable` counts report markers whose claim does not re-verify.
+    """
+    corpus = Corpus(store.texts_for_run(run["run_id"]))
+    claims = [
+        Claim(
+            c["claim_id"],
+            c["text"],
+            tuple(Citation(x["source_id"], x["quote"]) for x in c["citations"]),
+        )
+        for c in run["claims"]
+    ]
+    now = {v.claim_id: v.status for v in verify_claims(claims, corpus)}
+    recorded = {v["claim_id"]: v["status"] for v in run["verdicts"]}
+    same = sum(1 for cid in now if recorded.get(cid) == now[cid])
+    markers = run.get("report_markers", [])
+    unverifiable = sum(1 for m in markers if now.get(m) != "verified")
+    return {
+        "claims": len(claims),
+        "same": same,
+        "report_markers": len(markers),
+        "unverifiable": unverifiable,
+    }

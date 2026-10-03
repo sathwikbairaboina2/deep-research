@@ -31,3 +31,4 @@ Task 13: complete (uv run pytest tests/test_graph.py -> 10 passed; red seen: wit
 Task 14: complete (uv run pytest tests/test_writer.py -> 9 passed; red seen: with the verified filter removed 7 writer tests failed)
 Ruling: test_resume_after_crash asserts store fetch total == reference + 1, not == reference - ADR-0005 charges before the network call so the one call that crashed stays counted; each URL is still fetched successfully exactly once - none
 Task 15: complete (uv run pytest tests/test_runner.py tests/test_resume.py -> 6 passed, resume test repeated 6x stable; red seen: with stored-URL reuse removed test_resume_after_crash[1] failed)
+Task 16: complete (uv run pytest tests/test_cli.py -> 3 passed; eval/bench/serve wired in tasks 17-19)
