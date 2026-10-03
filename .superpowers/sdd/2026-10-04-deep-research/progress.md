@@ -23,3 +23,4 @@ Task 6: complete (uv run pytest tests/test_budget.py -> 5 passed; red seen: with
 Task 7: complete (uv run pytest tests/test_store.py -> 4 passed)
 Task 8: complete (uv run pytest tests/test_urls.py tests/test_search.py -> 14 passed)
 Task 9: complete (uv run pytest tests/test_fetch.py -> 3 passed (real local ThreadingHTTPServer); red seen: not run, removing the byte cap or deadline would hang the endless/slow routes)
+Task 10: complete (uv run pytest tests/test_llm.py -> 8 passed)
