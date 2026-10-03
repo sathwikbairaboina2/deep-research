@@ -24,3 +24,10 @@ Task 7: complete (uv run pytest tests/test_store.py -> 4 passed)
 Task 8: complete (uv run pytest tests/test_urls.py tests/test_search.py -> 14 passed)
 Task 9: complete (uv run pytest tests/test_fetch.py -> 3 passed (real local ThreadingHTTPServer); red seen: not run, removing the byte cap or deadline would hang the endless/slow routes)
 Task 10: complete (uv run pytest tests/test_llm.py -> 8 passed)
+Ruling: a shared /tmp/done.sh helper was overwritten by the pricing-engine session between tasks 10 and 11; my done.sh calls for tasks 11-14 therefore wrote 4 ledger lines and made 4 commits (15f4869, 959903a, 9b7fde1, bc3560e) in the pricing-engine repo instead of here. I did not touch that repo (rules). Lead must tell that session / clean it. My work for tasks 11-14 is re-committed here with a session-private script - none for this repo
+Task 11: complete (uv run pytest tests/test_nodes.py -> 12 passed; red seen: not separately run)
+Task 12: complete (uv run pytest tests/test_researcher.py -> 2 passed)
+Task 13: complete (uv run pytest tests/test_graph.py -> 10 passed; red seen: without max_concurrency test_round_and_fanout_caps failed with assert 3 <= 2)
+Task 14: complete (uv run pytest tests/test_writer.py -> 9 passed; red seen: with the verified filter removed 7 writer tests failed)
+Ruling: test_resume_after_crash asserts store fetch total == reference + 1, not == reference - ADR-0005 charges before the network call so the one call that crashed stays counted; each URL is still fetched successfully exactly once - none
+Task 15: complete (uv run pytest tests/test_runner.py tests/test_resume.py -> 6 passed, resume test repeated 6x stable; red seen: with stored-URL reuse removed test_resume_after_crash[1] failed)
