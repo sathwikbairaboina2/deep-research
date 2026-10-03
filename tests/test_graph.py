@@ -103,3 +103,14 @@ def test_planner_failure_ends_run(tmp_path):
     final = run_graph(deps)
     assert final["status"] == "failed"
     assert final["errors"] == ["planner:LLMOutputError"]
+
+
+def test_planner_transport_error_fails_the_run_cleanly(tmp_path):
+    from deep_research.llm import LLMError, ScriptedLLM
+
+    def boom(req):
+        raise LLMError("timed out")
+
+    final = run_graph(make_deps(tmp_path, ScriptedLLM({"plan": boom})))
+    assert final["status"] == "failed"
+    assert final["errors"] == ["planner:LLMError"]

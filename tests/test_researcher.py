@@ -28,3 +28,15 @@ def test_researcher_budget_hit_still_extracts(tmp_path):
     assert out["budget_hit"] == ["fetch"]
     assert len(out["sources"]) == 1
     assert len(out["claims"]) == 2
+
+
+def test_transport_error_is_recorded_not_raised(tmp_path):
+    from deep_research.llm import LLMError, ScriptedLLM
+
+    def boom(req):
+        raise LLMError("ollama request failed: ReadTimeout('timed out')")
+
+    deps = make_deps(tmp_path, ScriptedLLM({"queries": boom}))
+    out = build_researcher(deps).invoke(payload())
+    assert out["claims"] == []
+    assert out["errors"] == ["t1:queries:LLMError"]

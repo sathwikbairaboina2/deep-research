@@ -47,8 +47,11 @@ def build_researcher(deps: Deps):
             return {"queries": write_queries(deps, state["question"], topic)}
         except BudgetExceeded as exc:
             return {"queries": [], "budget_hit": [exc.kind]}
-        except LLMOutputError:
-            return {"queries": [], "errors": [f"{topic['topic_id']}:queries:LLMOutputError"]}
+        except LLMOutputError as exc:
+            return {
+                "queries": [],
+                "errors": [f"{topic['topic_id']}:queries:{type(exc).__name__}"],
+            }
 
     def gather(state: ResearcherState) -> dict:
         if not state.get("queries"):
@@ -64,8 +67,8 @@ def build_researcher(deps: Deps):
             )
         except BudgetExceeded as exc:
             return {"budget_hit": [exc.kind]}
-        except LLMOutputError:
-            return {"errors": [f"{topic['topic_id']}:extract:LLMOutputError"]}
+        except LLMOutputError as exc:
+            return {"errors": [f"{topic['topic_id']}:extract:{type(exc).__name__}"]}
         return {"claims": claims}
 
     graph = StateGraph(

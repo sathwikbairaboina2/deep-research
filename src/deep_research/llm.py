@@ -15,12 +15,12 @@ from deep_research.budget import Budget
 NUM_PREDICT = {"plan": 600, "queries": 200, "extract": 1200, "write": 2000}
 
 
-class LLMError(Exception):
-    pass
-
-
 class LLMOutputError(Exception):
-    pass
+    """The model gave no usable answer (invalid output after retry, or the call itself failed)."""
+
+
+class LLMError(LLMOutputError):
+    """Transport-level failure (timeout, HTTP error). Handled like an unusable answer."""
 
 
 @dataclass(frozen=True)

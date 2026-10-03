@@ -143,3 +143,16 @@ def test_helpers():
     assert fallback_report("Q?", TOPICS, ver).count("[c:") == 2
     notes = footnote_notes(ver, sources)
     assert notes["t1-r1-c1"] == '"some quote words here now ok" - https://example.test/a'
+
+
+def test_writer_transport_error_goes_to_fallback(tmp_path):
+    from deep_research.llm import LLMError
+
+    def boom(req):
+        raise LLMError("timed out")
+
+    claims, verdicts, sources = _claims()
+    deps = _deps(tmp_path, boom)
+    out = write_report(deps, "Q?", TOPICS, claims, verdicts, sources)
+    assert out["writer"] == "fallback"
+    assert "[c:" not in out["report_md"]
