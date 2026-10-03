@@ -1,0 +1,32 @@
+name: deep-research
+
+services:
+  searxng:
+    image: searxng/searxng:2026.10.2-19ffbcd30
+    container_name: deep-research-searxng
+    ports:
+      - "127.0.0.1:5300:8080"
+    volumes:
+      - ./searxng:/etc/searxng
+    environment:
+      # Not a secret: a local-only placeholder so SearXNG starts.
+      SEARXNG_SECRET: ${SEARXNG_SECRET:-deep-research-local-dev-only}
+
+  app:
+    build: .
+    image: deep-research-app
+    environment:
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SEARXNG_URL: http://searxng:8080
+      DR_MODEL: ${DR_MODEL:-qwen3.8:27b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - dr-runs:/data/runs
+    ports:
+      - "127.0.0.1:5301:5301"
+    depends_on:
+      - searxng
+
+volumes:
+  dr-runs: {}

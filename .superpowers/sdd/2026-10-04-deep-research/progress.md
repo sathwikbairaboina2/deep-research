@@ -35,3 +35,5 @@ Task 16: complete (uv run pytest tests/test_cli.py -> 3 passed; eval/bench/serve
 Task 17: complete (uv run pytest tests/test_bench.py -> 11 passed; bench: genuine accepted 200/200 (1.0) | mutated rejected 812/812 (1.0); check ok)
 Task 18: complete (uv run pytest tests/test_evals.py -> 7 passed)
 Task 19: complete (uv run pytest tests/test_serve.py -> 6 passed (real local server, port 0))
+Ruling: in-image test command is 'pytest' not 'pytest -q' - addopts already has -q so a second -q hides the pass count; exit code is the same - none
+Task 20: complete (docker compose build app ok; in-image pytest -> 133 passed; searxng on 127.0.0.1:5300 returned 20 results (unresponsive: brave too many requests, duckduckgo CAPTCHA, wikidata timeout); dr --help prints usage; searxng left up for Task 22; no secret_key needed in settings.yml (env SEARXNG_SECRET worked))
