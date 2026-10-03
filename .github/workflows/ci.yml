@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+# The live tier (Ollama, SearXNG) and `dr eval` stay local: CI has no GPU and no model.
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          version: "0.12.21"
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest
+      - run: uv run python -m deep_research bench --check bench/results/latest.json
+      - run: uv build --package quoteproof
+      - run: uv build --package deep-research
+      - run: uv run --isolated --no-project --with dist/quoteproof-0.1.0-py3-none-any.whl python -c "import quoteproof"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels
+          path: dist/*
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t deep-research-app .
+      - run: docker run --rm --entrypoint "" deep-research-app pytest
