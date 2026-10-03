@@ -18,3 +18,4 @@ Ruling: TDD red step recorded only for invariant tests (guard removed, test fail
 Task 2: complete (uv run pytest packages/quoteproof -> 8 passed; red seen: not separately run)
 Task 3: complete (uv run pytest packages/quoteproof -> 16 passed; red seen: with the not-found check disabled test_mutated_quotes_rejected failed)
 Task 4: complete (uv run pytest packages -> 27 passed; wheel builds and imports isolated (0.1.0 NORM_V1); red seen: not separately run)
+Task 5: complete (uv run pytest tests/test_models.py -> passed)
