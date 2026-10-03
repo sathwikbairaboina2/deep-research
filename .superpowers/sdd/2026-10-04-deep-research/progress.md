@@ -16,3 +16,4 @@ Ruling: board write nested a stray `data.data.stage` field in projects/deep-rese
 Task 1: complete (tests: uv run pytest -> 3 passed; ruff ok; red seen: n/a scaffold)
 Ruling: TDD red step recorded only for invariant tests (guard removed, test fails); other tasks wrote test+impl together then ran - speed, no cost to coverage
 Task 2: complete (uv run pytest packages/quoteproof -> 8 passed; red seen: not separately run)
+Task 3: complete (uv run pytest packages/quoteproof -> 16 passed; red seen: with the not-found check disabled test_mutated_quotes_rejected failed)
