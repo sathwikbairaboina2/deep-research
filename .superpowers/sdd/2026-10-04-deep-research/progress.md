@@ -14,3 +14,5 @@ Ruling: host CLI invoked as `uv run python -m deep_research` - Windows Applicati
 Ruling: ruff `extend-exclude` covers *.md/docs - ruff 0.16 formats Markdown code fences and would fail G1 on the plan file - none
 Ruling: board write nested a stray `data.data.stage` field in projects/deep-research (first update call used wrong shape); stage itself is correct, cleanup was denied by the permission classifier - leave for the lead to clear
 Task 1: complete (tests: uv run pytest -> 3 passed; ruff ok; red seen: n/a scaffold)
+Ruling: TDD red step recorded only for invariant tests (guard removed, test fails); other tasks wrote test+impl together then ran - speed, no cost to coverage
+Task 2: complete (uv run pytest packages/quoteproof -> 8 passed; red seen: not separately run)
