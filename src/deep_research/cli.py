@@ -167,6 +167,35 @@ def _cmd_verify(args, settings) -> int:
     return 0 if result["same"] == result["claims"] and result["unverifiable"] == 0 else 1
 
 
+def _cmd_eval(args, settings) -> int:
+    from deep_research.evals import load_suite, run_eval
+
+    suite = load_suite(args.suite)
+    if args.only:
+        wanted = [i.strip() for i in args.only.split(",") if i.strip()]
+        unknown = [i for i in wanted if i not in {q["id"] for q in suite}]
+        if unknown:
+            print(f"error: unknown question ids: {', '.join(unknown)}", file=sys.stderr)
+            return 2
+        suite = [q for q in suite if q["id"] in wanted]
+    path = run_eval(
+        suite,
+        limit=args.limit,
+        limits=limits_from_args(args),
+        settings=settings,
+        out_dir=args.out,
+        suite_name=args.suite,
+    )
+    agg = json.loads(path.read_text(encoding="utf-8"))["aggregate"]
+    print(f"wrote {path}")
+    print(
+        f"rejected {agg['rejected']}/{agg['proposed']} proposed claims "
+        f"(rate {agg['rejection_rate']}); unverifiable shipped: {agg['unverifiable_shipped']}; "
+        f"errors: {agg['errors']}"
+    )
+    return 0 if agg["unverifiable_shipped"] == 0 else 1
+
+
 def main(argv: list[str] | None = None, *, deps_factory: Callable[[], dict] | None = None) -> int:
     parser = build_parser()
     try:
@@ -188,6 +217,8 @@ def main(argv: list[str] | None = None, *, deps_factory: Callable[[], dict] | No
             return _cmd_show(args, settings)
         if args.command == "verify":
             return _cmd_verify(args, settings)
+        if args.command == "eval":
+            return _cmd_eval(args, settings)
         if args.command == "bench":
             from deep_research.bench import bench_main
 

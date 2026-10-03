@@ -1,0 +1,38 @@
+version: 1
+questions:
+  - id: sqlite-wal
+    question: How does SQLite WAL mode affect reader and writer concurrency?
+    expected_domains: [sqlite.org]
+  - id: http-429
+    question: What does HTTP status 429 mean and how does the Retry-After header work?
+    expected_domains: [developer.mozilla.org, rfc-editor.org, httpwg.org]
+  - id: python-gil
+    question: How does the Python GIL affect CPU-bound multithreaded programs?
+    expected_domains: [docs.python.org, peps.python.org]
+  - id: pg-isolation
+    question: Which transaction isolation levels does PostgreSQL support and which anomalies does each prevent?
+    expected_domains: [postgresql.org]
+  - id: tcp-slow-start
+    question: How does TCP slow start work?
+    expected_domains: [rfc-editor.org, datatracker.ietf.org]
+  - id: utf8-vs-utf16
+    question: How do UTF-8 and UTF-16 encode Unicode code points differently?
+    expected_domains: [unicode.org, rfc-editor.org]
+  - id: git-objects
+    question: How does Git store blobs, trees and commits?
+    expected_domains: [git-scm.com]
+  - id: robots-rfc9309
+    question: What does RFC 9309 require of crawlers that read robots.txt?
+    expected_domains: [rfc-editor.org, datatracker.ietf.org, developers.google.com]
+  - id: dns-ttl
+    question: How do DNS resolvers use TTL values for caching?
+    expected_domains: [rfc-editor.org, datatracker.ietf.org, cloudflare.com]
+  - id: rust-ownership
+    question: What are Rust's ownership and borrowing rules?
+    expected_domains: [doc.rust-lang.org]
+  - id: http2-multiplexing
+    question: How does HTTP/2 multiplexing differ from HTTP/1.1 pipelining?
+    expected_domains: [rfc-editor.org, developer.mozilla.org, httpwg.org]
+  - id: linux-oom
+    question: What does the Linux OOM killer do and how does oom_score_adj change its choice?
+    expected_domains: [kernel.org, man7.org]
