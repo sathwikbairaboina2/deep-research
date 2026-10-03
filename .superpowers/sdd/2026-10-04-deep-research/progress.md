@@ -34,3 +34,4 @@ Task 15: complete (uv run pytest tests/test_runner.py tests/test_resume.py -> 6 
 Task 16: complete (uv run pytest tests/test_cli.py -> 3 passed; eval/bench/serve wired in tasks 17-19)
 Task 17: complete (uv run pytest tests/test_bench.py -> 11 passed; bench: genuine accepted 200/200 (1.0) | mutated rejected 812/812 (1.0); check ok)
 Task 18: complete (uv run pytest tests/test_evals.py -> 7 passed)
+Task 19: complete (uv run pytest tests/test_serve.py -> 6 passed (real local server, port 0))

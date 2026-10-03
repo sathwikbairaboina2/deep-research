@@ -217,6 +217,10 @@ def main(argv: list[str] | None = None, *, deps_factory: Callable[[], dict] | No
             return _cmd_show(args, settings)
         if args.command == "verify":
             return _cmd_verify(args, settings)
+        if args.command == "serve":
+            from deep_research.serve import serve_main
+
+            return serve_main(args.host, args.port, settings.runs_dir)
         if args.command == "eval":
             return _cmd_eval(args, settings)
         if args.command == "bench":
