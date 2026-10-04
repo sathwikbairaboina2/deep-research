@@ -1,6 +1,16 @@
-# deep-research
+# 🔎 deep-research
+
+> Research agent with a citation verifier. Every quote is checked against the page it cites before it reaches the report.
 
 **In the committed live eval (3 questions), the verifier rejected 5 of 42 model-proposed claims (rejection rate 0.119) and 0 unverifiable citations shipped. On the offline benchmark it accepts 200 of 200 genuine quotes and rejects 812 of 812 mutated ones.** Sources: `evals/results/2026-10-04.json` and `bench/results/latest.json`. Three questions are a demo, not a statistic.
+
+<!-- readme-header -->
+[![CI](https://github.com/sathwikbairaboina2/deep-research/actions/workflows/ci.yml/badge.svg)](https://github.com/sathwikbairaboina2/deep-research/actions/workflows/ci.yml) ![License: MIT](https://img.shields.io/badge/license-MIT-blue) ![Python](https://img.shields.io/badge/-Python-555) ![LangGraph](https://img.shields.io/badge/-LangGraph-555) ![Ollama](https://img.shields.io/badge/-Ollama-555)
+
+| Measured | Source |
+|---|---|
+| **0 bad citations shipped** | `evals/results/2026-10-04.json` |
+| **812 / 812 fakes rejected** | `bench/results/latest.json` |
 
 A local-first LangGraph research agent. A local model (Ollama) proposes claims, each with a quote copied from a page. A deterministic verifier, `quoteproof`, throws out every claim whose quote is not on the page it cites. Only verified claims reach the report.
 
