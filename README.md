@@ -62,6 +62,8 @@ On Windows hosts where Application Control blocks the `dr.exe` launcher, use `uv
 
 Other commands: `dr resume <run_id>` continues a crashed run from its checkpoint, `dr bench` reruns the offline benchmark, `dr eval --limit 3` runs the live eval.
 
+Configuration is by environment variable: `OLLAMA_BASE_URL`, `SEARXNG_URL`, `DR_MODEL` and `DR_RUNS_DIR` (defaults in `src/deep_research/config.py`). Run caps are CLI flags: `--topics`, `--rounds`, `--researchers`, `--max-searches`, `--max-fetches`, `--max-tokens`, `--max-wall`.
+
 ## quoteproof
 
 The verifier is its own zero-dependency package (standard library only, Python 3.10 or newer).
@@ -119,7 +121,7 @@ State lives in LangGraph with a SQLite checkpoint, so `dr resume` re-runs only t
 - The live eval is three questions with small caps. One question can hit its fetch cap before every topic is covered; the report says which caps were hit and which topics are under-covered.
 - The token cap is a reservation, not an exact count ([ADR-0005](docs/adr/0005-budget-ledger.md)). An LLM call is not interrupted when the wall-clock cap passes; the cap is checked before each call.
 - The writer can fall back to a plain bullet list when the model's draft fails the marker linter twice ([ADR-0007](docs/adr/0007-writer-fallback.md)). In the live eval, `evals/results/2026-10-04.json` records 1 fallback in 3 reports.
-- Nothing is published to PyPI and nothing was pushed anywhere.
+- Nothing is published to PyPI.
 
 ## Decisions
 
