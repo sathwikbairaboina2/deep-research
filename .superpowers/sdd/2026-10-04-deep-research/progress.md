@@ -40,3 +40,6 @@ Task 20: complete (docker compose build app ok; in-image pytest -> 133 passed; s
 Task 21: complete (yaml jobs ['docker', 'test']; uv build both wheels ok; quoteproof wheel imports isolated; deep-research wheel runs 'python -m deep_research --help' isolated; CI validated locally only (nothing pushed))
 Ruling: first live example run died with LLMError ReadTimeout (900 s) - the model runs CPU-only right now (ollama /api/ps size_vram 0), and transport errors were not handled by researcher/writer; fixed by making LLMError a subclass of LLMOutputError (researcher records it, writer falls back, planner fails cleanly) and resuming the same run id - one extra commit before Task 22
 Task 21b: complete (uv run pytest -> see commit; LLM transport errors handled)
+Task 22: complete (examples/sqlite-wal + examples/python-gil from real live runs, verify unverifiable: 0; live eval 3 questions committed evals/results/2026-10-04.{json,md}; resumed after machine crash, artifacts verified present)
+Task 23: complete (README with headline from bench + eval JSON, DEVDOCS draft, handoff, LICENSE)
+FINAL: ruff ok; pytest 136 passed, 1 skipped; bench check ok (200/200, 812/812); both wheels built; docker build ok, in-image pytest 136 passed, 1 skipped; NO_CONTAINERS; NO_SECRETS; 11 invariant tests present; live: eval 3 questions done earlier, DR_LIVE pytest not rerun after crash
