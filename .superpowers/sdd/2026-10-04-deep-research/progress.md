@@ -43,3 +43,7 @@ Task 21b: complete (uv run pytest -> see commit; LLM transport errors handled)
 Task 22: complete (examples/sqlite-wal + examples/python-gil from real live runs, verify unverifiable: 0; live eval 3 questions committed evals/results/2026-10-04.{json,md}; resumed after machine crash, artifacts verified present)
 Task 23: complete (README with headline from bench + eval JSON, DEVDOCS draft, handoff, LICENSE)
 FINAL: ruff ok; pytest 136 passed, 1 skipped; bench check ok (200/200, 812/812); both wheels built; docker build ok, in-image pytest 136 passed, 1 skipped; NO_CONTAINERS; NO_SECRETS; 11 invariant tests present; live: eval 3 questions done earlier, DR_LIVE pytest not rerun after crash
+LEAD REVIEW (Opus): no correctness bugs found in quoteproof verify/lint, writer verified-only filter, reverify_run, LLMError fix; README headline matches eval + bench JSON
+LEAD GATES (Opus): uv sync --frozen ok; ruff ok, 49 formatted; pytest 136 passed, 1 skipped; bench check ok (200/200, 812/812); wheels ok, quoteproof isolated import 0.1.0; docker build ok, in-image pytest 136 passed, 1 skipped (494.87s); NO_CONTAINERS; NO_SECRETS; 11/11 invariant tests
+Ruling: Sonnet co-author trailer on builder commits left as-is - rewriting local history is churn with no user value - trailer mismatch only
+Ruling: DR_LIVE live pytest not rerun after crash - the model runs CPU-only (~15 min/question) and committed live artifacts re-verify (dr verify: unverifiable 0) - live test freshness

@@ -21,3 +21,11 @@ git ls-files | grep -iE '(^|/)\.env($|\.)|secret|\.pem$|\.key$' || echo NO_SECRE
 ```
 
 Ledger: `.superpowers/sdd/2026-10-04-deep-research/progress.md` (includes the Ruling lines).
+
+## 2026-10-04, Claude (Opus lead), branch main
+
+**What changed.** I reviewed the build after the 06:08 machine crash and found no correctness bugs in the verifier, writer filter, re-verify or the LLM transport-error fix. I re-checked the README headline against `evals/results/2026-10-04.json` (5 of 42 rejected, 0 unverifiable shipped) and `bench/results/latest.json` (200/200, 812/812), and it matches. I reran every gate myself. Results: ruff ok (49 files formatted); pytest 136 passed, 1 skipped; bench check ok; both wheels built and quoteproof imports in isolation; docker image built with in-image pytest 136 passed, 1 skipped; no containers left; no secrets tracked; all 11 invariant tests present. I rewrote `docs/DEVDOCS.md` as the final developer guide and updated the board.
+
+**What is left.** Run the full 12-question eval on a GPU. Add a check that the quote supports the claim. `DR_LIVE=1 pytest -m live` was not rerun after the crash, but the committed live eval and examples came from real runs. Commits 1ab1ca4..19c11d2 carry a Sonnet co-author trailer instead of the Opus one. I left history unrewritten.
+
+**How to verify.** Run the commands in the section above, or follow `docs/DEVDOCS.md` section 5.
