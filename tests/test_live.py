@@ -29,7 +29,7 @@ def test_live_run_and_verify(tmp_path, capsys):
         settings,
     )
     run = json.loads(summary.run_json_path.read_text(encoding="utf-8"))
-    assert run["status"] in {"done", "budget_exhausted"}
+    assert run["status"] in {"done", "budget_exhausted"}, (run["status"], run["errors"])
     code = main(["verify", summary.run_id, "--runs-dir", str(settings.runs_dir)])
     assert code == 0
     assert "unverifiable: 0" in capsys.readouterr().out
