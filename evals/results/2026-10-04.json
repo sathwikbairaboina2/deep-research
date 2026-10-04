@@ -1,0 +1,113 @@
+{
+  "aggregate": {
+    "errors": 0,
+    "fallback_count": 1,
+    "max_tokens": 14729,
+    "max_wall_s": 1058.844,
+    "median_tokens": 6703,
+    "median_wall_s": 983.391,
+    "proposed": 42,
+    "questions": 3,
+    "rejected": 5,
+    "rejected_by_reason": {
+      "QUOTE_NOT_FOUND": 5
+    },
+    "rejection_rate": 0.119,
+    "topics": 9,
+    "topics_covered": 7,
+    "unverifiable_shipped": 0,
+    "verified": 37
+  },
+  "date": "2026-10-04",
+  "limit": 3,
+  "limits": {
+    "fetch_timeout_s": 20.0,
+    "max_bytes": 2000000,
+    "max_fetches": 9,
+    "max_searches": 6,
+    "max_tokens": 400000,
+    "max_topics": 3,
+    "max_wall_s": 900.0,
+    "min_verified_claims": 2,
+    "queries_per_topic": 2,
+    "researchers": 4,
+    "results_per_query": 3,
+    "rounds": 1,
+    "source_chars": 6000,
+    "sources_per_extract": 3
+  },
+  "model": {
+    "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "model": "qwen3.8:27b"
+  },
+  "questions": [
+    {
+      "claims_reverified_same": 18,
+      "coverage_rate": 1.0,
+      "expected_domain_share": 0.2353,
+      "id": "sqlite-wal",
+      "proposed": 18,
+      "question": "How does SQLite WAL mode affect reader and writer concurrency?",
+      "rejected": 1,
+      "rejected_by_reason": {
+        "QUOTE_NOT_FOUND": 1
+      },
+      "rejection_rate": 0.0556,
+      "report_markers": 17,
+      "run_id": "20261003-231536-a9a503",
+      "status": "done",
+      "tokens": 14729,
+      "topics": 3,
+      "topics_covered": 3,
+      "unverifiable_shipped": 0,
+      "verified": 17,
+      "wall_s": 983.391,
+      "writer": "fallback"
+    },
+    {
+      "claims_reverified_same": 12,
+      "coverage_rate": 0.6667,
+      "expected_domain_share": 0.5,
+      "id": "http-429",
+      "proposed": 12,
+      "question": "What does HTTP status 429 mean and how does the Retry-After header work?",
+      "rejected": 0,
+      "rejected_by_reason": {},
+      "rejection_rate": 0.0,
+      "report_markers": 11,
+      "run_id": "20261003-233201-e2aa99",
+      "status": "budget_exhausted",
+      "tokens": 6703,
+      "topics": 3,
+      "topics_covered": 2,
+      "unverifiable_shipped": 0,
+      "verified": 12,
+      "wall_s": 885.64,
+      "writer": "llm"
+    },
+    {
+      "claims_reverified_same": 12,
+      "coverage_rate": 0.6667,
+      "expected_domain_share": 0.0,
+      "id": "python-gil",
+      "proposed": 12,
+      "question": "How does the Python GIL affect CPU-bound multithreaded programs?",
+      "rejected": 4,
+      "rejected_by_reason": {
+        "QUOTE_NOT_FOUND": 4
+      },
+      "rejection_rate": 0.3333,
+      "report_markers": 8,
+      "run_id": "20261003-234648-5e84c3",
+      "status": "budget_exhausted",
+      "tokens": 6380,
+      "topics": 3,
+      "topics_covered": 2,
+      "unverifiable_shipped": 0,
+      "verified": 8,
+      "wall_s": 1058.844,
+      "writer": "llm"
+    }
+  ],
+  "suite": "evals/questions.yaml"
+}

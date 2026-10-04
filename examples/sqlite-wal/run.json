@@ -1,0 +1,662 @@
+{
+  "budget": {
+    "caps_hit": [],
+    "completion_tokens": 2632,
+    "fetches": 9,
+    "prompt_tokens": 13102,
+    "searches": 6,
+    "segments": [
+      {
+        "started_at": "2026-10-03T22:51:00+00:00",
+        "wall_s": 1018.063
+      },
+      {
+        "started_at": "2026-10-03T23:10:14+00:00",
+        "wall_s": 290.781
+      }
+    ],
+    "tokens": 15734,
+    "wall_s": 290.781
+  },
+  "caps_hit": [],
+  "claims": [
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "WAL allows concurrent readers and a writer (readers never block writers, and writers don\u2019t block readers) which is a big concurrency improvement over the rollback journal.",
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4"
+        }
+      ],
+      "claim_id": "t1-r1-c1",
+      "round": 1,
+      "text": "In WAL mode, readers can access the database concurrently with a writer because they read the original database file plus WAL frames, whereas in rollback journal mode, writers block readers during write and commit phases.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Locking and concurrency control are handled by the pager module. The pager module is responsible for making SQLite \"ACID\" (Atomic, Consistent, Isolated, and Durable).",
+          "source_id": "sha256:1ceb0da0c2e673e8bb8a1dd89243d54e706d81b04307faabaf78f8177f9b4a98"
+        }
+      ],
+      "claim_id": "t1-r1-c2",
+      "round": 1,
+      "text": "SQLite's locking and concurrency control are managed by the pager module, which ensures ACID properties and coordinates access between separate threads or processes.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "The document only describes locking for the older rollback-mode transaction mechanism. Locking for the newer write-ahead log or WAL mode is described separately.",
+          "source_id": "sha256:1ceb0da0c2e673e8bb8a1dd89243d54e706d81b04307faabaf78f8177f9b4a98"
+        }
+      ],
+      "claim_id": "t1-r1-c3",
+      "round": 1,
+      "text": "The official SQLite locking documentation describes the locking mechanism for the older rollback-mode transaction mechanism, while locking for the newer write-ahead log (WAL) mode is described in separate documentation.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "In classic journal mode, a writer will obtain locks that prevent other writers and sometimes readers; in WAL mode, locks are different to allow concurrent readers during a write.",
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4"
+        }
+      ],
+      "claim_id": "t1-r1-c4",
+      "round": 1,
+      "text": "In classic journal mode, a writer obtains locks that prevent other writers and sometimes readers, whereas in WAL mode, locks are structured differently to allow concurrent readers during a write.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "WAL: better read/write concurrency, requires shared memory (on many OSes) for coordination and produces .wal and .shm files alongside the DB.",
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4"
+        }
+      ],
+      "claim_id": "t1-r1-c5",
+      "round": 1,
+      "text": "WAL mode requires shared memory for coordination on many operating systems and produces .wal and .shm files alongside the main database file, unlike the simpler rollback journal approach.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "SQLite coordinates multi-process/thread access via file locks implemented by the VFS layer. Lock states like SHARED, PENDING, EXCLUSIVE govern who can read or write.",
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4"
+        }
+      ],
+      "claim_id": "t1-r1-c6",
+      "round": 1,
+      "text": "SQLite coordinates multi-process and multi-thread access via file locks implemented by the VFS layer, using lock states such as SHARED, PENDING, and EXCLUSIVE to govern read and write permissions.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "WAL provides more concurrency as readers do not block writers and a writer does not block readers. Reading and writing can proceed concurrently.",
+          "source_id": "sha256:97effba41ec1ff8629376ecc466c67f648ffe2766fb7dd66293a360e84437e8b"
+        }
+      ],
+      "claim_id": "t2-r1-c1",
+      "round": 1,
+      "text": "SQLite WAL mode allows readers and writers to operate concurrently, as readers do not block writers and writers do not block readers.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Thus a COMMIT can happen without ever writing to the original database, which allows readers to continue operating from the original unaltered database while changes are simultaneously being committed into the WAL.",
+          "source_id": "sha256:97effba41ec1ff8629376ecc466c67f648ffe2766fb7dd66293a360e84437e8b"
+        }
+      ],
+      "claim_id": "t2-r1-c2",
+      "round": 1,
+      "text": "In WAL mode, a writer appends changes to a separate file while readers continue operating from the original unaltered database file.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "Each reader sees a consistent snapshot from when its transaction began, and the writer is busy adding to the WAL without touching what the readers are looking at.",
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837"
+        }
+      ],
+      "claim_id": "t2-r1-c3",
+      "round": 1,
+      "text": "WAL mode ensures that each reader sees a consistent snapshot of the database as it existed at the start of their transaction.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "WAL doesn't give you concurrent writes. SQLite still serializes them: at any moment, exactly one transaction holds the write lock.",
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837"
+        }
+      ],
+      "claim_id": "t2-r1-c4",
+      "round": 1,
+      "text": "SQLite WAL mode serializes write operations, meaning only one transaction can hold the write lock at any given moment.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "Long-running readers (analytics queries, exports) don't make writers wait.",
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837"
+        }
+      ],
+      "claim_id": "t2-r1-c5",
+      "round": 1,
+      "text": "In WAL mode, long-running read operations do not prevent writers from proceeding with their transactions.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "In WAL Mode, the database can allow readers to keep reading data even when someone is writing to the database.",
+          "source_id": "sha256:6bf2bd4595b1aac4e08f6b89c8f84ff2f3c23ab3f43b58b5c178be42c7980646"
+        }
+      ],
+      "claim_id": "t2-r1-c6",
+      "round": 1,
+      "text": "WAL mode allows the database to permit readers to continue reading data while another process is writing to the database.",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Effect: Can reduce per-transaction overhead from 30ms+ to < 1ms.",
+          "source_id": "sha256:7f2f79fa48844f0553e8765e84c05874945d10913cedf195a01dcb69a48b48c1"
+        }
+      ],
+      "claim_id": "t3-r1-c1",
+      "round": 1,
+      "text": "Enabling WAL mode and setting synchronous to normal can reduce per-transaction overhead from over 30ms to less than 1ms.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "In WAL mode, readers can continue reading from the database while writing. The only limit is that only a single transaction can write at any point.",
+          "source_id": "sha256:7f2f79fa48844f0553e8765e84c05874945d10913cedf195a01dcb69a48b48c1"
+        }
+      ],
+      "claim_id": "t3-r1-c2",
+      "round": 1,
+      "text": "In WAL mode, readers can continue reading from the database while a writer is active, though only a single transaction can write at any point.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "Checkpointing changes this because: - Data must eventually be written back into the main database file That introduces: - Random I/O - Synchronization overhead - Additional disk pressure",
+          "source_id": "sha256:cfa5568746727f0fe7177f286dd8161077de7b5ad527bf3bde7c6a27b3d0b6dd"
+        }
+      ],
+      "claim_id": "t3-r1-c3",
+      "round": 1,
+      "text": "Checkpointing in WAL mode introduces random I/O and synchronization overhead because data must be written back into the main database file.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "If a reader is still using old WAL frames: - SQLite cannot safely remove those frames Result: - WAL file keeps growing This can lead to: - Huge WAL files - Slower checkpoints",
+          "source_id": "sha256:cfa5568746727f0fe7177f286dd8161077de7b5ad527bf3bde7c6a27b3d0b6dd"
+        }
+      ],
+      "claim_id": "t3-r1-c4",
+      "round": 1,
+      "text": "Long-running read transactions prevent SQLite from safely removing old WAL frames, which can lead to huge WAL files and slower checkpoints.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "The result: a writer and any number of readers can be active at the same moment. Each reader sees a consistent snapshot from when its transaction began",
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837"
+        }
+      ],
+      "claim_id": "t3-r1-c5",
+      "round": 1,
+      "text": "WAL mode allows a writer and any number of readers to be active simultaneously, with each reader seeing a consistent snapshot.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S3",
+          "quote": "Network filesystems. WAL relies on shared memory (mmap) between processes accessing the database. NFS, SMB, and similar don't support that reliably.",
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837"
+        }
+      ],
+      "claim_id": "t3-r1-c6",
+      "round": 1,
+      "text": "WAL mode is not suitable for network filesystems like NFS or SMB because it relies on shared memory support that these systems do not provide reliably.",
+      "topic_id": "t3"
+    }
+  ],
+  "errors": [],
+  "finished_at": "2026-10-03T23:15:05+00:00",
+  "limits": {
+    "fetch_timeout_s": 20.0,
+    "max_bytes": 2000000,
+    "max_fetches": 9,
+    "max_searches": 6,
+    "max_tokens": 400000,
+    "max_topics": 3,
+    "max_wall_s": 900.0,
+    "min_verified_claims": 2,
+    "queries_per_topic": 2,
+    "researchers": 4,
+    "results_per_query": 3,
+    "rounds": 1,
+    "source_chars": 6000,
+    "sources_per_extract": 3
+  },
+  "model": {
+    "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "model": "qwen3.8:27b"
+  },
+  "norm": "NORM_V1",
+  "question": "How does SQLite WAL mode affect reader and writer concurrency?",
+  "report_draft": "In WAL mode, readers and writers can operate concurrently because readers do not block writers and writers do not block readers [c:t2-r1-c1]. This is achieved by having the writer append changes to a separate file while readers continue operating from the original unaltered database file [c:t2-r1-c2]. Unlike rollback journal mode, where writers block readers during write and commit phases, WAL mode structures locks differently to allow concurrent readers during a write [c:t1-r1-c1]. Specifically, in classic journal mode, a writer obtains locks that prevent other writers and sometimes readers, whereas in WAL mode, this restriction is removed for readers [c:t1-r1-c4]. While readers and writers can run simultaneously, SQLite WAL mode serializes write operations, meaning only one transaction can hold the write lock at any given moment [c:t2-r1-c4]. Consequently, a writer and any number of readers can be active simultaneously, with each reader seeing a consistent snapshot of the database as it existed at the start of their transaction [c:t3-r1-c5]. This snapshot isolation ensures that each reader sees a consistent view of the data [c:t2-r1-c3]. Long-running read operations do not prevent writers from proceeding with their transactions [c:t2-r1-c5]. However, long-running read transactions can prevent SQLite from safely removing old WAL frames, which may lead to huge WAL files and slower checkpoints [c:t3-r1-c4]. The coordination of these concurrent accesses is managed by the pager module, which ensures ACID properties and coordinates access between separate threads or processes [c:t1-r1-c2]. This coordination relies on file locks implemented by the VFS layer, using lock states such as SHARED, PENDING, and EXCLUSIVE to govern read and write permissions [c:t1-r1-c6]. WAL mode requires shared memory for coordination on many operating systems and produces .wal and .shm files alongside the main database file [c:t1-r1-c5]. Due to this reliance on shared memory, WAL mode is not suitable for network filesystems like NFS or SMB because these systems do not provide reliable shared memory support [c:t3-r1-c6]. The official SQLite locking documentation describes the locking mechanism for the older rollback-mode transaction mechanism, while locking for the newer write-ahead log (WAL) mode is described in separate documentation [c:t1-r1-c3].",
+  "report_markers": [
+    "t2-r1-c1",
+    "t2-r1-c2",
+    "t1-r1-c1",
+    "t1-r1-c4",
+    "t2-r1-c4",
+    "t3-r1-c5",
+    "t2-r1-c3",
+    "t2-r1-c5",
+    "t3-r1-c4",
+    "t1-r1-c2",
+    "t1-r1-c6",
+    "t1-r1-c5",
+    "t3-r1-c6",
+    "t1-r1-c3"
+  ],
+  "run_id": "example-sqlite-wal",
+  "sources": [
+    {
+      "canonical_url": "https://www.sqlite.org/lockingv3.html",
+      "round": 1,
+      "source_id": "sha256:1ceb0da0c2e673e8bb8a1dd89243d54e706d81b04307faabaf78f8177f9b4a98",
+      "topic_id": "t1",
+      "url": "https://www.sqlite.org/lockingv3.html"
+    },
+    {
+      "canonical_url": "https://www.sqlite.org/arch.html",
+      "round": 1,
+      "source_id": "sha256:b2a147f0ce1a91a7c4b58c660abe0bfdf66d0a37257153368442cc3cb05b23f9",
+      "topic_id": "t1",
+      "url": "https://www.sqlite.org/arch.html"
+    },
+    {
+      "canonical_url": "https://dev.to/lovestaco/deep-dive-into-sqlites-internal-architecture-2fjl",
+      "round": 1,
+      "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4",
+      "topic_id": "t1",
+      "url": "https://dev.to/lovestaco/deep-dive-into-sqlites-internal-architecture-2fjl"
+    },
+    {
+      "canonical_url": "https://www.sqlite.org/wal.html",
+      "round": 1,
+      "source_id": "sha256:97effba41ec1ff8629376ecc466c67f648ffe2766fb7dd66293a360e84437e8b",
+      "topic_id": "t2",
+      "url": "https://www.sqlite.org/wal.html"
+    },
+    {
+      "canonical_url": "https://coddy.tech/docs/sqlite/wal-mode-and-concurrency",
+      "round": 1,
+      "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+      "topic_id": "t2",
+      "url": "https://coddy.tech/docs/sqlite/wal-mode-and-concurrency"
+    },
+    {
+      "canonical_url": "https://www.sqliteforum.com/p/handling-concurrency-in-sqlite-best",
+      "round": 1,
+      "source_id": "sha256:6bf2bd4595b1aac4e08f6b89c8f84ff2f3c23ab3f43b58b5c178be42c7980646",
+      "topic_id": "t2",
+      "url": "https://www.sqliteforum.com/p/handling-concurrency-in-sqlite-best"
+    },
+    {
+      "canonical_url": "https://powersync.com/blog/sqlite-optimizations-for-ultra-high-performance",
+      "round": 1,
+      "source_id": "sha256:7f2f79fa48844f0553e8765e84c05874945d10913cedf195a01dcb69a48b48c1",
+      "topic_id": "t3",
+      "url": "https://powersync.com/blog/sqlite-optimizations-for-ultra-high-performance"
+    },
+    {
+      "canonical_url": "https://www.sqliteforum.com/p/checkpoint-algorithms-and-wal-performance",
+      "round": 1,
+      "source_id": "sha256:cfa5568746727f0fe7177f286dd8161077de7b5ad527bf3bde7c6a27b3d0b6dd",
+      "topic_id": "t3",
+      "url": "https://www.sqliteforum.com/p/checkpoint-algorithms-and-wal-performance"
+    },
+    {
+      "canonical_url": "https://coddy.tech/docs/sqlite/wal-mode-and-concurrency",
+      "round": 1,
+      "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+      "topic_id": "t3",
+      "url": "https://coddy.tech/docs/sqlite/wal-mode-and-concurrency"
+    }
+  ],
+  "started_at": "2026-10-03T22:50:59+00:00",
+  "status": "done",
+  "topics": [
+    {
+      "rationale": "This sub-topic explains the fundamental shift from exclusive database locking to shared read/write access enabled by the Write-Ahead Log structure.",
+      "title": "WAL Architecture and Locking Mechanisms",
+      "topic_id": "t1"
+    },
+    {
+      "rationale": "This focuses on how multiple readers can operate simultaneously with a single writer, and how readers see a consistent snapshot without blocking the writer.",
+      "title": "Reader-Writer Concurrency Behavior",
+      "topic_id": "t2"
+    },
+    {
+      "rationale": "This examines the practical trade-offs, such as reduced write contention compared to rollback journal mode, and specific constraints like the single-writer bottleneck and checkpointing overhead.",
+      "title": "Performance Implications and Limitations",
+      "topic_id": "t3"
+    }
+  ],
+  "verdicts": [
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3281,
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c1",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1125,
+          "source_id": "sha256:1ceb0da0c2e673e8bb8a1dd89243d54e706d81b04307faabaf78f8177f9b4a98",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c2",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 493,
+          "source_id": "sha256:1ceb0da0c2e673e8bb8a1dd89243d54e706d81b04307faabaf78f8177f9b4a98",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c3",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 4119,
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c4",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3732,
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c5",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3953,
+          "source_id": "sha256:82097f7f437f24a39e0365e9a9451a3e65495336ec87f0ed95d39016daa16fa4",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c6",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 371,
+          "source_id": "sha256:97effba41ec1ff8629376ecc466c67f648ffe2766fb7dd66293a360e84437e8b",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c1",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3604,
+          "source_id": "sha256:97effba41ec1ff8629376ecc466c67f648ffe2766fb7dd66293a360e84437e8b",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c2",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1062,
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c3",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 2804,
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c4",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3200,
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c5",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 4046,
+          "source_id": "sha256:6bf2bd4595b1aac4e08f6b89c8f84ff2f3c23ab3f43b58b5c178be42c7980646",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t2-r1-c6",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t2"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 812,
+          "source_id": "sha256:7f2f79fa48844f0553e8765e84c05874945d10913cedf195a01dcb69a48b48c1",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c1",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 5340,
+          "source_id": "sha256:7f2f79fa48844f0553e8765e84c05874945d10913cedf195a01dcb69a48b48c1",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c2",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3708,
+          "source_id": "sha256:cfa5568746727f0fe7177f286dd8161077de7b5ad527bf3bde7c6a27b3d0b6dd",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c3",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 4478,
+          "source_id": "sha256:cfa5568746727f0fe7177f286dd8161077de7b5ad527bf3bde7c6a27b3d0b6dd",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c4",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 981,
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c5",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 5615,
+          "source_id": "sha256:855499f29b339d1eecfa870b7f6c9f8ea3bf0cdc991140bb3dcf49c99b0b1837",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c6",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    }
+  ],
+  "versions": {
+    "deep_research": "0.1.0",
+    "langgraph": "1.2.12",
+    "quoteproof": "0.1.0"
+  },
+  "writer": "llm"
+}

@@ -1,0 +1,501 @@
+{
+  "budget": {
+    "caps_hit": [
+      "fetch"
+    ],
+    "completion_tokens": 1962,
+    "fetches": 9,
+    "prompt_tokens": 4418,
+    "searches": 6,
+    "segments": [
+      {
+        "started_at": "2026-10-03T23:46:49+00:00",
+        "wall_s": 1058.844
+      }
+    ],
+    "tokens": 6380,
+    "wall_s": 1058.907
+  },
+  "caps_hit": [
+    "fetch"
+  ],
+  "claims": [
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "Global Interpreter Lock (GIL) is a mutex (mutual-exclusion lock) used in the CPython interpreter... It ensures that only one thread executes Python bytecode at a time",
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2"
+        },
+        {
+          "label": "S1",
+          "quote": "it's a lock inside CPython... that ensures only one thread executes Python bytecode at a time, within a single interpreter",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        }
+      ],
+      "claim_id": "t1-r1-c1",
+      "round": 1,
+      "text": "The Global Interpreter Lock (GIL) is a mutex in CPython that ensures only one thread executes Python bytecode at a time, preventing parallel execution of CPU-bound code.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "In CPython, every Python object uses reference counting for memory management... If two threads simultaneously modify the reference count, it can cause: corrupted memory",
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2"
+        },
+        {
+          "label": "S1",
+          "quote": "Python primarily manages memory with reference counting... If two threads update those counters simultaneously without coordination, you get race conditions",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        }
+      ],
+      "claim_id": "t1-r1-c2",
+      "round": 1,
+      "text": "CPython uses reference counting for memory management, and the GIL prevents race conditions that would occur if multiple threads modified object reference counts simultaneously.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "CPython periodically gives other waiting threads a chance to acquire the GIL (the interval is 5 ms by default, tunable via sys.setswitchinterval())",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        }
+      ],
+      "claim_id": "t1-r1-c3",
+      "round": 1,
+      "text": "CPython periodically releases the GIL to allow other threads to execute, with a default switch interval of 5 milliseconds that is tunable via sys.setswitchinterval().",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "The GIL is released when Python is doing blocking I/O... the underlying C call releases the GIL during the wait, lets other threads run",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        },
+        {
+          "label": "S2",
+          "quote": "When a thread waits for I/O -> it releases the GIL. Other threads can run during that time.",
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2"
+        }
+      ],
+      "claim_id": "t1-r1-c4",
+      "round": 1,
+      "text": "The GIL is released when Python performs blocking I/O operations, allowing other threads to run during the wait, which makes multithreading effective for I/O-bound tasks.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S2",
+          "quote": "In a CPU-bound task, multiple threads do NOT run in parallel because the GIL does not allow it.",
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2"
+        },
+        {
+          "label": "S1",
+          "quote": "Eight worker threads. Should be a lot faster, right? It was the same speed. Maybe a hair slower.",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        }
+      ],
+      "claim_id": "t1-r1-c5",
+      "round": 1,
+      "text": "In CPU-bound multithreaded programs, the GIL prevents true parallelism, resulting in performance that is similar to or slightly slower than single-threaded execution.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "The alternatives to the GIL is fine-grained locking on every object... more overhead per operation, slower single-threaded code",
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813"
+        },
+        {
+          "label": "S2",
+          "quote": "Without the GIL, Python would slow down: Many small locks would make Python slower for normal programs.",
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2"
+        }
+      ],
+      "claim_id": "t1-r1-c6",
+      "round": 1,
+      "text": "The GIL persists in CPython because removing it would require fine-grained locking that slows down single-threaded code and breaks the compatibility of the C extension ecosystem.",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "In standard CPython, GIL (Global Interpreter Lock) allows only one thread to execute Python bytecode at a time.",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c1",
+      "round": 1,
+      "text": "In standard CPython, the Global Interpreter Lock (GIL) restricts execution so that only one thread can run Python bytecode at a time.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Therefore, Multithreading is generally not suitable for speeding up CPU-bound Python code.",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c2",
+      "round": 1,
+      "text": "Because of the GIL, multithreading is generally not suitable for speeding up CPU-bound Python code.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Separate processes can run on different CPU cores, they can achieve true parallel execution.",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c3",
+      "round": 1,
+      "text": "Multiprocessing allows for true parallel execution of CPU-bound workloads because separate processes can run on different CPU cores.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Unlike, threads here each process has its own GIL, so work can be distributed across multiple processes.",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c4",
+      "round": 1,
+      "text": "In a multiprocessing setup, each process has its own GIL, allowing work to be distributed across multiple processes.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Best suited for | I/O-bound tasks | CPU-bound tasks",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c5",
+      "round": 1,
+      "text": "Multiprocessing is best suited for CPU-bound tasks, whereas multithreading is best suited for I/O-bound tasks.",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "label": "S1",
+          "quote": "Parallel CPU execution | Limited in standard CPython | Supported",
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f"
+        }
+      ],
+      "claim_id": "t3-r1-c6",
+      "round": 1,
+      "text": "Parallel CPU execution is limited in standard CPython when using multithreading, but it is supported when using multiprocessing.",
+      "topic_id": "t3"
+    }
+  ],
+  "errors": [],
+  "finished_at": "2026-10-04T00:04:28+00:00",
+  "limits": {
+    "fetch_timeout_s": 20.0,
+    "max_bytes": 2000000,
+    "max_fetches": 9,
+    "max_searches": 6,
+    "max_tokens": 400000,
+    "max_topics": 3,
+    "max_wall_s": 900.0,
+    "min_verified_claims": 2,
+    "queries_per_topic": 2,
+    "researchers": 4,
+    "results_per_query": 3,
+    "rounds": 1,
+    "source_chars": 6000,
+    "sources_per_extract": 3
+  },
+  "model": {
+    "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "model": "qwen3.8:27b"
+  },
+  "norm": "NORM_V1",
+  "question": "How does the Python GIL affect CPU-bound multithreaded programs?",
+  "report_draft": "In standard CPython, the Global Interpreter Lock (GIL) restricts execution so that only one thread can run Python bytecode at a time [c:t3-r1-c1]. This limitation means that parallel CPU execution is constrained when using multithreading [c:t3-r1-c6]. Consequently, the GIL prevents true parallelism in CPU-bound multithreaded programs, resulting in performance that is similar to or slightly slower than single-threaded execution [c:t1-r1-c5]. Because of this, multithreading is generally not suitable for speeding up CPU-bound Python code [c:t3-r1-c2]. Although CPython periodically releases the GIL to allow other threads to execute, with a default switch interval of 5 milliseconds that is tunable via sys.setswitchinterval(), this does not enable true parallelism for CPU-bound tasks [c:t1-r1-c3]. Instead, multiprocessing is best suited for CPU-bound tasks, whereas multithreading is best suited for I/O-bound tasks [c:t3-r1-c5]. Multiprocessing allows for true parallel execution of CPU-bound workloads because separate processes can run on different CPU cores [c:t3-r1-c3]. In a multiprocessing setup, each process has its own GIL, allowing work to be distributed across multiple processes [c:t3-r1-c4].",
+  "report_markers": [
+    "t3-r1-c1",
+    "t3-r1-c6",
+    "t1-r1-c5",
+    "t3-r1-c2",
+    "t1-r1-c3",
+    "t3-r1-c5",
+    "t3-r1-c3",
+    "t3-r1-c4"
+  ],
+  "run_id": "20261003-234648-5e84c3",
+  "sources": [
+    {
+      "canonical_url": "https://dev.to/lovestaco/how-pythons-gil-actually-works-and-when-it-bites-you-3f2",
+      "round": 1,
+      "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+      "topic_id": "t1",
+      "url": "https://dev.to/lovestaco/how-pythons-gil-actually-works-and-when-it-bites-you-3f2"
+    },
+    {
+      "canonical_url": "https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil",
+      "round": 1,
+      "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+      "topic_id": "t1",
+      "url": "https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil/"
+    },
+    {
+      "canonical_url": "https://www.geeksforgeeks.org/python/difference-between-multithreading-vs-multiprocessing-in-python",
+      "round": 1,
+      "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+      "topic_id": "t3",
+      "url": "https://www.geeksforgeeks.org/python/difference-between-multithreading-vs-multiprocessing-in-python/"
+    }
+  ],
+  "started_at": "2026-10-03T23:46:48+00:00",
+  "status": "budget_exhausted",
+  "topics": [
+    {
+      "rationale": "This sub-topic explains the fundamental design of the Global Interpreter Lock and how it serializes access to Python objects, establishing the theoretical basis for why true parallelism is blocked.",
+      "title": "Mechanism of the GIL",
+      "topic_id": "t1"
+    },
+    {
+      "rationale": "This section analyzes specific benchmarks and execution behaviors to demonstrate how the GIL prevents speedups in compute-heavy workloads, contrasting them with I/O-bound scenarios.",
+      "title": "Performance Impact on CPU-Bound Tasks",
+      "topic_id": "t2"
+    },
+    {
+      "rationale": "This part explores practical solutions such as multiprocessing, C extensions, or alternative interpreters that bypass the GIL to achieve true parallelism for CPU-bound applications.",
+      "title": "Workarounds and Alternatives",
+      "topic_id": "t3"
+    }
+  ],
+  "verdicts": [
+    {
+      "citations": [
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+          "status": "QUOTE_NOT_FOUND"
+        },
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "QUOTE_NOT_FOUND"
+        }
+      ],
+      "claim_id": "t1-r1-c1",
+      "norm": "NORM_V1",
+      "reason": "QUOTE_NOT_FOUND",
+      "status": "rejected",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+          "status": "QUOTE_NOT_FOUND"
+        },
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "QUOTE_NOT_FOUND"
+        }
+      ],
+      "claim_id": "t1-r1-c2",
+      "norm": "NORM_V1",
+      "reason": "QUOTE_NOT_FOUND",
+      "status": "rejected",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1564,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c3",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "QUOTE_NOT_FOUND"
+        },
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+          "status": "QUOTE_NOT_FOUND"
+        }
+      ],
+      "claim_id": "t1-r1-c4",
+      "norm": "NORM_V1",
+      "reason": "QUOTE_NOT_FOUND",
+      "status": "rejected",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1906,
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+          "status": "found"
+        },
+        {
+          "match": "exact_normalized",
+          "offset": 800,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c5",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": null,
+          "offset": null,
+          "source_id": "sha256:c773c120973d6a4d30759c9c141dca6c83a12afef99b5d06ff9edd9591cc2813",
+          "status": "QUOTE_NOT_FOUND"
+        },
+        {
+          "match": "exact_normalized",
+          "offset": 3723,
+          "source_id": "sha256:997c2f893bfb734208c00f6ffa79a585dc39bce3674b3bb5325ad5cfda548ed2",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t1-r1-c6",
+      "norm": "NORM_V1",
+      "reason": "QUOTE_NOT_FOUND",
+      "status": "rejected",
+      "topic_id": "t1"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 606,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c1",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 720,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c2",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1733,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c3",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 1896,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c4",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3063,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c5",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    },
+    {
+      "citations": [
+        {
+          "match": "exact_normalized",
+          "offset": 3456,
+          "source_id": "sha256:441d1a40c909c7a08035f232f26636b143c7abe6e6b05990b009b0efa64f179f",
+          "status": "found"
+        }
+      ],
+      "claim_id": "t3-r1-c6",
+      "norm": "NORM_V1",
+      "reason": null,
+      "status": "verified",
+      "topic_id": "t3"
+    }
+  ],
+  "versions": {
+    "deep_research": "0.1.0",
+    "langgraph": "1.2.12",
+    "quoteproof": "0.1.0"
+  },
+  "writer": "llm"
+}
